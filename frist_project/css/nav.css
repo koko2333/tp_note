@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    width: 100%;
+    height: 60px;
+    background-color: rgba(247, 241, 166, 0.6);
+}
+.nav_main{
+    height: 100%;
+    width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.nav_main p{
+    font-size: 26px;
+    margin-left: 20px;
+    font-family: SimHei;
+    letter-spacing: .5rem;
+    color:rgba(111, 148, 91,.6);
+}
+.nav_main img{
+    opacity: .6;
+}
+a{
+    text-decoration: none;
+}

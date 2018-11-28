@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div_editor{
+            margin-top: 10px;
+            width: 80%;
+            height: 200px;
+        }
+        .div_toolbar{
+            width: 720px;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="获取内容">
+    <input type="button" value="生成内容">
+    <input type="button" value="传递内容"> 
+    <div id="div_tool" class="div_toolbar"></div>
+    <div id="div_editor">
+        <p>hi</p>
+    </div>
+    <div id="output"></div>
+    <script type="text/javascript" src="frist_project/wangEditor-3.1.1/release/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var E=window.wangEditor;
+        var editor=new E('#div_tool','#div_editor');
+        editor.create();
+        document.getElementsByTagName("input")[0].addEventListener('click',function (){
+            console.log(editor.txt.html())
+        },false);
+        document.getElementsByTagName("input")[1].onclick=function(){
+            document.getElementById("output").innerHTML=editor.txt.html();
+        }
+        document.getElementsByTagName("input")[2].onclick=function(){
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //请求方式，请求url(后端接口，api),同步或者异步
+            //POST方法，string()类型向服务器发送请求
+            xmlhttp.open("POST", "test.php", true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //post方式传参，string 类型
+            xmlhttp.send("txt="+editor.txt.html());
+            //响应事件
+            xmlhttp.onreadystatechange = function () {
+                //响应状态
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    //获取数据，并将其转换成object
+                    var str=xmlhttp.responseText;
+                    console.log(str);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

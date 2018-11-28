@@ -1,0 +1,32 @@
+body{
+    background-image: url(../img/hbg.png);
+}
+nav{
+    box-shadow: 0px 1px 3px rgb(88, 104, 104);
+}
+#wellcome{
+    font-size: 16px;
+    letter-spacing: .1rem;
+}
+.nav_main{
+    justify-content: space-between;
+}
+.nav_main div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+#logout{
+    text-decoration: none;
+    color:white;
+    letter-spacing: .05rem;
+    font-size: 13px;
+    border: solid 1px gray;
+    padding: 5px;
+    border-radius: 3px;
+    background-color:rgba(92, 214, 245, 0.6);
+}
+#logout:hover{
+    cursor: pointer;
+    background-color:rgba(92, 214, 245, 1);
+}
