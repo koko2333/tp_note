@@ -89,6 +89,7 @@ document.getElementsByClassName("footer")[0].onclick=function(e){
 }
 //通过事件代理来获取当先点击节点的id（也就是当前节点的下标）
 var item=document.getElementsByClassName("item")[0];
+var footer=document.getElementsByClassName("footer")[0];
 item.onclick=function(e){
     e=e || window.event;
     //如果点的是main就执行下一步
@@ -96,6 +97,7 @@ item.onclick=function(e){
     if(e.target.tagName.toLowerCase()=="main"){
     box=e.target.parentElement.id;
     item.style.display="none";
+    footer.style.display="none";
     var note_show=document.getElementById("note_show");
     note_show.style.display="block";
     note_show.innerHTML='<span id="note_show_title">'+obj_user[box].title+"</span>"+"<br>"+unescape(obj_user[box].note);
@@ -109,6 +111,7 @@ item.onclick=function(e){
         title_box.style.display="flex";
         title_box.innerHTML='<p>我的笔记：</p><div><input type="text" id="search" placeholder="搜索标题或笔记内容" onfocus="be_focus(this)" onblur="be_onblur(this)" onmouseover="mouse_over(this)" onmouseout="mouse_leave(this)"><div id="search_btn" onclick="note_search()"><i class="fa fa-search"></i></div><div id="ico_new" onclick=go_to_deict()><span>+</span></div><p id="new_note">新建笔记</p></div>';
         item.style.display="flex";
+        footer.style.display="flex";
     }
     //编辑按钮点击的时候创建一个存储了标题和笔记的临时储存并打开edict页面
     document.getElementById("edit").onclick=function(){
