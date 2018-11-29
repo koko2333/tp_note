@@ -1,0 +1,73 @@
+body{
+    background-image: url(../img/bg.jpg);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.item_box{
+    width: 340px;
+    height: 260px;
+    background-color: white;
+    opacity: .8;
+    margin: 0 auto;
+    box-shadow: 0px 0px 25px rgb(3, 116, 82);
+    padding: 50px;
+    padding-top: 100px;
+}
+main{
+    width: 100%;
+}
+.mian_left{
+    width: 65%;
+    position: relative;
+    top: 80px;
+}
+.txt_box{
+    width: 68%;
+    padding-left: 20px;
+    height: 35px;;
+    border-radius: 5px;
+    border: solid 1px gray;
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+.login,.regist{
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+    color: gray;
+}
+.login{
+    background-color:rgba(116, 201, 240,.6);
+}
+.regist{
+    margin-left: 36px;
+}
+.login:hover{
+    background-color: rgba(43, 139, 177,1);
+}
+.regist:hover{
+    background-color: rgb(149, 170, 173);
+}
+input::-webkit-input-placeholder{
+    color: rgb(167, 157, 157);
+}
+input::-ms-input-placeholder{
+    color: rgb(167, 157, 157);
+}
+#rember_me{
+    margin-top: 20px;
+}
+.remind{
+    color: red;
+    position: relative;
+    left: 10px;
+    font-size: 13px;
+}
+.user_test{
+    margin: 0;
+    color: red;
+}

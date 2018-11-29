@@ -1,0 +1,76 @@
+nav{
+    box-shadow: 0px 1px 3px rgb(151, 234, 240);
+}
+body{
+    background-color: rgb(245, 245, 245);
+}
+main{
+    width: 100%;
+}
+.box{
+    width: 720px;
+    margin: 0 auto;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px rgb(3, 116, 82);
+    position: relative;
+    top: 50px;
+    display: flex;
+}
+.box_left{
+    position: relative;
+    top: 40px;
+    width: 35%;
+    text-align: right;
+}
+.box_right{
+    width: 65%;
+    position: relative;
+    top: 40px;
+}
+.box_left p{
+    margin: 0;
+    height: 74px;
+    line-height: 74px;
+}
+.box_right input{
+    width: 253px;
+    height: 40px;
+    margin-top:  15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: solid 1px gray;
+    font-size: 17px;
+    padding-left: 20px;
+}
+input::-webkit-input-placeholder{
+    color: rgb(167, 157, 157);
+}
+input::-ms-input-placeholder{
+    color: rgb(167, 157, 157);
+}
+#btn{
+    width: 273px;
+    cursor: pointer;
+    padding-left: 0px;
+    background-color:rgba(116, 201, 240,.6);
+    color: gray;
+}
+#btn:hover{
+    background-color: rgb(61, 201, 226);
+}
+#agreen{
+    width: 15px;
+    height: 15px;
+}
+.box_right span{
+    font-size: 12px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+    font-size: 16px;
+}

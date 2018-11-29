@@ -1,0 +1,34 @@
+main{
+    width: 75%;
+    margin: 0 auto;
+}
+.title{
+    width: 100%;
+    height: 60px;
+}
+.wang{
+    width: 100%;
+    background-color: white;
+    height: 500px;
+}
+.tool{
+    width: 100%;
+}
+.input_title{
+    width: 100%;
+    height: 70%;
+    border: none;
+    font-size: 18px;
+}
+#save{
+    color: white;
+    border-radius: 3px;
+    background-color:rgba(92, 214, 245, 0.6);
+    width: 80px;
+    text-align: center;
+    border: solid 1px gray;
+    cursor: pointer;
+}
+#save:hover{
+    background-color:rgba(92, 214, 245, 1);
+}
