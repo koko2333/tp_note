@@ -27,19 +27,65 @@ function get_note(){
                 //获取数据，并将其转换成object
                 var str=xmlhttp.responseText;
                 obj_user=JSON.parse(str);
-                console.log(obj_user)
-                //将预览内容和笔记标题加载到对应的位置
-                for(var i=0;i<obj_user.length;i++){
-                    var item=document.getElementsByClassName("item")[0];
-                    //截取预览
-                    var perview=unescape(obj_user[i].note_txt).slice(0,200);
-                    item.innerHTML+='<div class="note_box" id="'+i+'"><main>'+perview+'</main><p>'+obj_user[i].title+'</p></div>';
-                }
+                console.log(obj_user);
                 //结束动画
                 document.getElementsByClassName("loding")[0].style.display="none";
                 document.getElementsByTagName("main")[0].style.opacity="1";
+                load_note();
             }
         }
+}
+function load_note(){
+    var n_of_pages=Math.ceil(obj_user.length/9);
+    //将预览内容和笔记标题加载到对应的位置
+    if(obj_user.length<=9){
+        //第一页加载的内容个数等于obj_user的长度
+        var num_of_one_page=obj_user.length;
+    }else{
+        //第一页加载的内容的个数等于9
+        var num_of_one_page=9;
+        //加载分页按钮
+        for(var i=0;i<n_of_pages;i++){
+            //加载第几页
+            document.getElementsByClassName("footer")[0].innerHTML+='<mian id='+i+'>第'+(i+1)+'页</main>';
+        }
+    }
+    for(var i=0;i<num_of_one_page;i++){
+        var item=document.getElementsByClassName("item")[0];
+        //截取预览
+        var perview=unescape(obj_user[i].note_txt).slice(0,200);
+        item.innerHTML+='<div class="note_box" id="'+i+'"><main>'+perview+'</main><p>'+obj_user[i].title+'</p></div>';
+    }
+}
+//点击页码页的函数
+document.getElementsByClassName("footer")[0].onclick=function(e){
+    e=e || window.event;
+    //如果点的是mian就执行下一步
+    if(e.target.tagName.toLowerCase()=="mian"){
+        //清空内容
+        document.getElementsByClassName("item")[0].innerHTML="";
+        if(e.target.id>=0){
+            //如果点的按钮是最后一页
+            if(e.target.id==Math.floor(obj_user.length/9)){
+                for(var i=(e.target.id*9);i<obj_user.length;i++){
+                    var item=document.getElementsByClassName("item")[0];
+                    //截取预览
+                    var perview=unescape(obj_user[i].note_txt).slice(0,200);
+                    //添加内容
+                    item.innerHTML+='<div class="note_box" id="'+i+'"><main>'+perview+'</main><p>'+obj_user[i].title+'</p></div>';
+                }
+            }else{
+            //添加预览和标题
+            for(var i=(e.target.id*9);i<(parseInt(e.target.id)+1)*9;i++){
+                var item=document.getElementsByClassName("item")[0];
+                //截取预览
+                var perview=unescape(obj_user[i].note_txt).slice(0,200);
+                //添加内容
+                item.innerHTML+='<div class="note_box" id="'+i+'"><main>'+perview+'</main><p>'+obj_user[i].title+'</p></div>';
+            }
+        }
+        }
+    }
 }
 //通过事件代理来获取当先点击节点的id（也就是当前节点的下标）
 var item=document.getElementsByClassName("item")[0];
@@ -145,11 +191,13 @@ function mouse_leave(a){
 }
 function note_search(){
     var a=1;
-    for(var k=0;k<obj_user.length;k++){
-        document.getElementsByClassName("note_box")[k].classList.remove("border");
-    }
-    var keywords=document.getElementById("search").value;
-    for(var i=0;i<obj_user.length;i++){
+    var id_fristnote=document.getElementsByClassName('item')[0].firstElementChild.id;
+    if(id_fristnote==Math.floor(obj_user.length/9)*9){
+        for(var k=parseInt(id_fristnote);k<obj_user.length;k++){
+            document.getElementsByClassName("note_box")[k-(9*(id_fristnote/9))].classList.remove("border");
+        }
+        var keywords=document.getElementById("search").value;
+    for(var i= parseInt(id_fristnote);i<obj_user.length;i++){
         if(obj_user[i].title.indexOf(keywords)!=-1){
             document.getElementById(i).classList.add("border");
             a=0;
@@ -159,8 +207,27 @@ function note_search(){
         }
     }
     if(a){
-        alert("没有结果");
+        alert("当前页面没有结果");
     }
+    }
+    else{
+    for(var k=parseInt(id_fristnote);k<parseInt(id_fristnote)+9;k++){
+        document.getElementsByClassName("note_box")[k-(9*(id_fristnote/9))].classList.remove("border");
+    }
+    var keywords=document.getElementById("search").value;
+    for(var i= parseInt(id_fristnote);i<parseInt(id_fristnote)+9;i++){
+        if(obj_user[i].title.indexOf(keywords)!=-1){
+            document.getElementById(i).classList.add("border");
+            a=0;
+        }else if(unescape(obj_user[i].note_txt).indexOf(keywords)!=-1){
+            document.getElementById(i).classList.add("border");
+            a=0;
+        }
+    }
+    if(a){
+        alert("当前页面没有结果");
+    }
+}
 }
 //敲键盘搜索
 //开关打开敲enter执行搜索函数
