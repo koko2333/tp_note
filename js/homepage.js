@@ -144,6 +144,7 @@ function mouse_leave(a){
     }
 }
 function note_search(){
+    var a=1;
     for(var k=0;k<obj_user.length;k++){
         document.getElementsByClassName("note_box")[k].classList.remove("border");
     }
@@ -151,9 +152,14 @@ function note_search(){
     for(var i=0;i<obj_user.length;i++){
         if(obj_user[i].title.indexOf(keywords)!=-1){
             document.getElementById(i).classList.add("border");
+            a=0;
         }else if(unescape(obj_user[i].note_txt).indexOf(keywords)!=-1){
             document.getElementById(i).classList.add("border");
+            a=0;
         }
+    }
+    if(a){
+        alert("没有结果");
     }
 }
 //敲键盘搜索

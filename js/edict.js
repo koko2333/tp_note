@@ -46,6 +46,8 @@ document.getElementById("save").onclick=function(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             //获取数据
             var str=xmlhttp.responseText;
+            //如果数据返回为ok，建立一个临时储存，表示这边已经编辑了笔记了
+            //然后home页如果看见了这个临时储存，就会刷新页面
             if(str=="ok"){
                 window.opener=null;
                 window.open('','_self');
